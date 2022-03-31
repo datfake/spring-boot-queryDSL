@@ -33,6 +33,7 @@ public class BookService implements IBookService {
         Book book = new Book();
         book.setName(bookRequest.getName());
         book.setEntryDate(bookRequest.getEntryDate());
+        bookRepository.save(book);
         bookRequest.getAuthorIds().forEach(authorId -> {
             Author author = authorRepository.findById(authorId).get();
             author.addBook(book);
@@ -43,7 +44,7 @@ public class BookService implements IBookService {
             store.addBook(book);
             storeRepository.save(store);
         });
-        return bookRepository.save(book);
+        return book;
     }
 
     @Override
