@@ -7,6 +7,7 @@ import java.util.List;
 public interface IStoreService {
     List<Store> getAllStores();
     Store getStoreById(Long id);
-    boolean deleteStoreById(Long id);
-    int deleteAll();
+    Store addStore(Store store);
+    void deleteStoreById(Long id);
+    void deleteAll();
 }

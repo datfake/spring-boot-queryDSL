@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface IAuthorService {
     List<Author> getAllAuthors();
+    Author addAuthor(Author author);
     Author findAuthorById(Long id);
-    boolean deleteAuthorById(Long id);
-    int deleteAll();
+    void deleteAuthorById(Long id);
+    void deleteAll();
 }

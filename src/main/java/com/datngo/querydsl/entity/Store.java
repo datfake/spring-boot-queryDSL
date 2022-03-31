@@ -1,8 +1,7 @@
 package com.datngo.querydsl.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -11,7 +10,8 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,14 @@ public class Store {
 
     private String address;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "stores_books", joinColumns = {@JoinColumn(name = "store_id")},
             inverseJoinColumns = {@JoinColumn(name = "book_id")})
     private Set<Book> books = new LinkedHashSet<>();
+
+    public void addBook(Book book) {
+        this.books.add(book);
+        book.getStores().add(this);
+    }
 }

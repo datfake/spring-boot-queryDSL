@@ -3,7 +3,7 @@ package com.datngo.querydsl.controller;
 import com.datngo.querydsl.entity.Store;
 import com.datngo.querydsl.model.StoreRequest;
 import com.datngo.querydsl.service.IStoreService;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/store")
-@Data
+@AllArgsConstructor
 public class StoreController {
     private final IStoreService storeService;
 
@@ -27,6 +27,7 @@ public class StoreController {
     public ResponseEntity addStore(@RequestBody StoreRequest storeRequest) {
         Store store = new Store();
         store.setName(storeRequest.getName());
+        storeService.addStore(store);
         return new ResponseEntity<>(store, HttpStatus.CREATED);
     }
 
@@ -38,8 +39,7 @@ public class StoreController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteStore(@PathVariable("id") Long id) {
-        boolean result = storeService.deleteStoreById(id);
-        if (result) return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        storeService.deleteStoreById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
