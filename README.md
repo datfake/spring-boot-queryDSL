@@ -1,2 +1,2 @@
 # spring-boot-queryDSL
-use queryDsl
+use queryDsl & Jpa and compare them
