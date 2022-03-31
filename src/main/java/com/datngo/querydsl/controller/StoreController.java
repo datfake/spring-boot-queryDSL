@@ -27,6 +27,7 @@ public class StoreController {
     public ResponseEntity addStore(@RequestBody StoreRequest storeRequest) {
         Store store = new Store();
         store.setName(storeRequest.getName());
+        store.setAddress(storeRequest.getName());
         storeService.addStore(store);
         return new ResponseEntity<>(store, HttpStatus.CREATED);
     }
