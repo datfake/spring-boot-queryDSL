@@ -3,7 +3,7 @@ package com.datngo.querydsl.controller;
 import com.datngo.querydsl.entity.Author;
 import com.datngo.querydsl.model.AuthorRequest;
 import com.datngo.querydsl.service.IAuthorService;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/author")
-@Data
+@AllArgsConstructor
 public class AuthorController {
 
     private final IAuthorService authorService;

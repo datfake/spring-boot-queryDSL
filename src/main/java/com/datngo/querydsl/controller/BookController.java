@@ -3,7 +3,7 @@ package com.datngo.querydsl.controller;
 import com.datngo.querydsl.entity.Book;
 import com.datngo.querydsl.model.BookRequest;
 import com.datngo.querydsl.service.IBookService;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/book")
-@Data
+@AllArgsConstructor
 public class BookController {
     private final IBookService bookService;
 
