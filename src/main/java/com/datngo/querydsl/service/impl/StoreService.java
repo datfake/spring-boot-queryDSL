@@ -19,8 +19,8 @@ public class StoreService implements IStoreService {
     }
 
     @Override
-    public void deleteStoreById(Long id) {
-
+    public boolean deleteStoreById(Long id) {
+        return false;
     }
 
     @Override

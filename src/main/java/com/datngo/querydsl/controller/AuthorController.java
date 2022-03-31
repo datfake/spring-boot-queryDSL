@@ -32,8 +32,15 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity addAuthor(@PathVariable("id") Long id) {
+    public ResponseEntity getAuthor(@PathVariable("id") Long id) {
         Author author = authorService.findAuthorById(id);
         return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteAuthor(@PathVariable("id") Long id) {
+        boolean result = authorService.deleteAuthorById(id);
+        if (result) return new ResponseEntity<>(HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

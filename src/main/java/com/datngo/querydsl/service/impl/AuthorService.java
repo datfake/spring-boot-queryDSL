@@ -19,8 +19,8 @@ public class AuthorService implements IAuthorService {
     }
 
     @Override
-    public void deleteAuthorById(Long id) {
-
+    public boolean deleteAuthorById(Long id) {
+        return false;
     }
 
     @Override

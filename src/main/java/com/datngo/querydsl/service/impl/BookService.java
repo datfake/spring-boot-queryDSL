@@ -19,8 +19,8 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void deleteBookById(Long id) {
-
+    public boolean deleteBookById(Long id) {
+        return false;
     }
 
     @Override
