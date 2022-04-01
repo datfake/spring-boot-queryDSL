@@ -28,6 +28,7 @@ public class AuthorController {
     public ResponseEntity addAuthor(@RequestBody AuthorRequest authorRequest) {
         Author author = new Author();
         author.setName(authorRequest.getName());
+        authorService.addAuthor(author);
         return new ResponseEntity<>(author, HttpStatus.CREATED);
     }
 
@@ -39,8 +40,7 @@ public class AuthorController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAuthor(@PathVariable("id") Long id) {
-        boolean result = authorService.deleteAuthorById(id);
-        if (result) return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        authorService.deleteAuthorById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

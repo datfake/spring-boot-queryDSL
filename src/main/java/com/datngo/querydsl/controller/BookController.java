@@ -25,8 +25,7 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity addBook(@RequestBody BookRequest bookRequest) {
-        Book book = new Book();
-        book.setName(bookRequest.getName());
+        Book book = bookService.addBook(bookRequest);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
@@ -38,8 +37,7 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteBook(@PathVariable("id") Long id) {
-        boolean result = bookService.deleteBookById(id);
-        if (result) return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        bookService.deleteBookById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

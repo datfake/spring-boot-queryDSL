@@ -27,6 +27,8 @@ public class StoreController {
     public ResponseEntity addStore(@RequestBody StoreRequest storeRequest) {
         Store store = new Store();
         store.setName(storeRequest.getName());
+        store.setAddress(storeRequest.getAddress());
+        storeService.addStore(store);
         return new ResponseEntity<>(store, HttpStatus.CREATED);
     }
 
@@ -38,8 +40,7 @@ public class StoreController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteStore(@PathVariable("id") Long id) {
-        boolean result = storeService.deleteStoreById(id);
-        if (result) return new ResponseEntity<>(HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        storeService.deleteStoreById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
